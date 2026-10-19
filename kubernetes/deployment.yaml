@@ -1,0 +1,37 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-petclinic
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-petclinic
+  template:
+    metadata:
+      labels:
+        app: spring-petclinic
+    spec:
+      containers:
+        - name: spring-petclinic
+          image: springcommunity/spring-petclinic-rest:latest
+          ports:
+            - containerPort: 9966
+          startupProbe:
+            httpGet:
+              path: /petclinic/actuator/health
+              port: 9966
+            periodSeconds: 10
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /petclinic/actuator/health
+              port: 9966
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /petclinic/actuator/health
+              port: 9966
+            periodSeconds: 20
