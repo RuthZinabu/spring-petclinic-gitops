@@ -14,6 +14,13 @@ spec:
       labels:
         app: spring-petclinic
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: spring-petclinic
+              topologyKey: kubernetes.io/hostname
       containers:
         - name: spring-petclinic
           image: ruth89y7/spring-petclinic-rest:4
