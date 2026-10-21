@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: spring-petclinic
-          image: springcommunity/spring-petclinic-rest:latest
+          image: ruth89y7/spring-petclinic-rest:4
           ports:
             - containerPort: 9966
           startupProbe:
