@@ -23,6 +23,10 @@ spec:
                   matchLabels:
                     app: spring-petclinic
                 topologyKey: kubernetes.io/hostname
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
       containers:
         - name: spring-petclinic
           image: ruth89y7/spring-petclinic-rest:4
